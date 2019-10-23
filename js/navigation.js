@@ -4,7 +4,7 @@
 
     hideErrorAlerts();
 
-    $("#personalLink a").click(function(){
+    $("#dvPersonalDetailsnk a").click(function(){
       showPersonalDetails(); 
       return false;
     });
@@ -20,46 +20,144 @@
     });
   });
 
-  function showCarDetails() {
-      
-    // Hide the personal details section (dvPersonalDetails)
-    // Hide the quote section (dvQuoteDetails)
-    // Show the car details section (dvCarDetails)
+function showCarDetails() {
+    // create a variable for isValid
+      var isValid = true;
+      if ($("#txtName").val()==""){
+        console.log("Name")
+        isValid = false;
+      }
+      if ($("#txtAge").val() =="" || $("#txtAge").val()<16){
+        console.log("Age")
+        isValid = false;
+      }
+      if ($("#rdoGenderMale").prop("checked")==false && $("#rdoGenderFemale").prop("checked")==false){
+        console.log("Gender")
+        isValid = false;
+      }
+      if ($("#txtTowncity").val()==("")){
+        console.log("Town/city")
+        isValid = false;
+      }
+      if ($("#txtEmail").val()==("")){
+        console.log("Email")
+        isValid = false;
+      }
+      if ($("#ClaimBonus").val()=="Select"){
+        console.log("Claim")
+        isValid = false;
+      }
 
-  }
+      if (isValid == true){
+        $("#dvPersonalDetails").hide();
+
+        $("#dvQuoteDetails").hide();
+
+        $("#dvCarDetails").show();
+        console.log("True")
+      } else{
+        $("#dvPersonalDetailsAlert").show()
+        console.log("Error")
+      }
+
+      // $("#dvPersonalDetails").hide();
+
+      // $("#dvQuoteDetails").hide();
+
+      // $("#dvCarDetails").show();
+    }
+  
+
+
+
+  // here show hide / error 
+  
 
   function showPersonalDetails() {
+    $("#dvPersonalDetails").show();
+
+    $("#dvQuoteDetails").hide();
+
+    $("#dvCarDetails").hide();
       // Hide the car details section (dvCarDetails)
       // Hide the quote section (dvQuoteDetails)
       // Show the personal details section (dvPersonalDetails)
-  }
+    }
 
-  function showQuoteDetails() {
+    function showQuoteDetails() {
+
+      var isValid = true 
+      if ($("#Manufacturer").val()=="Select"){
+        console.log("Manufacturer")
+        isValid = false;
+      }
+
+      if ($("#txtModel").val()==""){
+        console.log("Model")
+        isValid = false;
+      }
+
+      if ($("#txtcarAge").val() =="" || $("#txtAge").val()<16){
+        console.log("Car Age")
+        isValid = false;
+      }
+
+      if ($("#txtESize").val()==""){
+        console.log("Engine Size")
+        isValid = false;
+      }
+
+      if ($("#Storage").val()=="Select"){
+        console.log("Storage")
+        isValid = false;
+      }
+
+
+      if ($("#txtEstimate").val()==""){
+        console.log("Estimate")
+        isValid = false;
+
+      }
+
+      if (isValid == true){
+        $("#dvPersonalDetails").hide();
+        $("#dvQuoteDetails").show();
+        $("#dvCarDetails").hide();
+        console.log("True")
+      } else{
+        $("#dvCarDetailsAlert").show()
+        console.log("Error")
+      }
+
+    }
+  
+
+
       // Hide the car details section (dvCarDetails)
       // Hide the personal details section (dvQuoteDetails)
       // Show the quote section (dvPersonalDetails)
-  }
 
-  function getQuote() {
+
+      function getQuote() {
 
     // Perform validation to test that all data has been entered
 
-    if (/* Page is Valid */)
+    if (true)
     {
 
       // Get the values from the page elements that you need to create your JSON
 
       $.ajax({
-          type: "GET",
-          url: "http://localhost:53753/api/rating/CalculateRates",
-          data: { /* create JSON here */ }
-        }).done(function(msg) {
+        type: "GET",
+        url: "http://localhost:53753/api/rating/CalculateRates",
+      data: { /* create JSON here */ }
+    }).done(function(msg) {
           // Put the return value into Label created on quote details
           // Hide the Car Details section
           // Display the quote details page
-      });
+        });
   }
-
+}
 //################################# Helper Functions - look at these when validating and changing section #########################################
 
   // Use this function to "Reset" the form and hide all 3 error sections whenever you make a section transition
